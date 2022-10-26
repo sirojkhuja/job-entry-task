@@ -2,10 +2,13 @@
 
 namespace App\Services;
 
+use App\Models\Product;
+use Illuminate\Support\Facades\Config;
+
 class ProductHelperService
 {
-    public function calculateTotalWithVAT()
+    public function calculateTotalWithVAT(Product $product, $vat)
     {
-        return null;
+        return ($product->quantity * $product->price) * (1 + $vat);
     }
 }

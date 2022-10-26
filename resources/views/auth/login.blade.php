@@ -19,24 +19,33 @@
                 <div class="card border-0 shadow rounded-3 my-5">
                     <div class="card-body p-4 p-sm-5">
                         <h5 class="card-title text-center mb-5 fw-light fs-5">Sign In</h5>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <form action="" method="POST">
                             @csrf
                             <div class="form-floating mb-3">
-                                <input type="email" name="email" id="email" class="form-control" placeholder="Your email">
+                                <input type="email" name="email" id="email" class="form-control"
+                                    placeholder="Your email">
                                 <label for="email">Email address</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="password" name="password" id="password" class="form-control" placeholder="Your password">
+                                <input type="password" name="password" id="password" class="form-control"
+                                    placeholder="Your password">
                                 <label for="password">Password</label>
                             </div>
-
                             <div class="row">
                                 <div class="col-1"></div>
                                 <button class="col-4 btn btn-primary btn-login text-uppercase fw-bold"
                                     type="submit">Login</button>
                                 <div class="col-2"></div>
-                                <a class="col-4 text-uppercase fw-bold"
-                                    href="/register">Register</a>
+                                <a class="col-4 text-uppercase fw-bold" href="/register">Register</a>
                             </div>
                         </form>
                     </div>

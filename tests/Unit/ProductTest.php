@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Models\Product;
 use App\Services\ProductHelperService;
 use PHPUnit\Framework\TestCase;
 
@@ -12,10 +13,17 @@ class ProductTest extends TestCase
      *
      * @return void
      */
-    public function test_calculate_total_with_vat()
+    public function testCalculatePriceWithVat()
     {
-        $helperService = new ProductHelperService();
+        $helper = new ProductHelperService();
 
-        $this->assertTrue(true);
+        $product = new Product();
+        $product->title = "Test Product";
+        $product->quantity = 10;
+        $product->price = 12.25;
+
+        $vat = 0.2;
+
+        $this->assertEquals(147, $helper->calculateTotalWithVAT($product, $vat));
     }
 }

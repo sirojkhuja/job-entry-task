@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class RoleController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+        return view('pages.users.index', compact('users'));
     }
 
     /**
@@ -23,7 +25,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.users.create');
     }
 
     /**
@@ -34,7 +36,15 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|min:4|max:255',
+            'email' => 'required|email|unique:users|min:10|max:255',
+            'password' => 'required|min:6|max:255'
+        ]);
+
+        User::create($request->all());
+
+        return redirect()->route('users.index');
     }
 
     /**
@@ -43,9 +53,9 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        return view('pages.users.edit', compact('user'));
     }
 
     /**
@@ -54,9 +64,9 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        return view('pages.users.edit', compact('user'));
     }
 
     /**
@@ -66,9 +76,16 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|min:4|max:255',
+            'email' => 'required|email|min:10|max:255',
+        ]);
+
+        $user->fill($request->all())->save();
+
+        return redirect()->route('users.index');
     }
 
     /**
@@ -77,8 +94,12 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        if ($user) {
+            $user->delete();
+        }
+
+        return redirect()->route('users.index');
     }
 }

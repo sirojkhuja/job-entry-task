@@ -42,8 +42,7 @@ class LoginController extends Controller
     {
         return [
             'email'     => $request->email,
-            'password'  => $request->password,
-            'status' => 1
+            'password'  => $request->password
         ];
     }
 }

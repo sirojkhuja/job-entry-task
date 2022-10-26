@@ -15,10 +15,10 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->comment('The user who created the product');
             $table->string('title');
             $table->unsignedBigInteger('quantity')->nullable()->default(0);
             $table->unsignedDouble('price')->nullable()->default(0.0);
+            $table->unsignedDouble('price_with_vat')->nullable()->default(0.0);
             $table->unsignedTinyInteger('status')->nullable()->default(1)->comment('0 - disabled, 1 - active');
             $table->timestamps();
         });

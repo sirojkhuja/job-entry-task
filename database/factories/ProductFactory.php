@@ -16,7 +16,6 @@ class ProductFactory extends Factory
     {
         return [
             'title' => $this->faker->name(),
-            'user_id' => 1,
             'quantity' => $this->faker->numberBetween(1, 1000),
             'price' => $this->faker->randomFloat(2, 1.0, 1000.0),
             'created_at' => Carbon::now()

@@ -34,18 +34,16 @@
                     <td>
                         <div class="row">
                             @if (Auth::user()->role === 'Admin')
-                                <div class="col-1"></div>
-                                <form action="/products/{{ $product->id }}/edit" method="GET" class="col-1">
+                                <form action="/products/{{ $product->id }}/edit" method="GET" class="col-2">
                                     @csrf
-                                    <div onclick=" this.parentElement.submit()" class="btn btn-warning px-3 py-1 text-white">
+                                    <div onclick=" this.parentElement.submit()" class="action-button btn btn-warning px-3 py-1 text-white">
                                         <i class="fa fa-edit"></i>
                                     </div>
                                 </form>
-                                <div class="col-1"></div>
                                 <form action="/products/{{ $product->id }}" method="POST" class="col-2">
                                     @csrf
                                     {{ method_field('DELETE') }}
-                                    <div onclick=" this.parentElement.submit()" class="btn btn-danger px-3 py-1">
+                                    <div onclick=" this.parentElement.submit()" class="action-button btn btn-danger px-3 py-1">
                                         <i class="fa fa-times"></i>
                                     </div>
                                 </form>

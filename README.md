@@ -1,4 +1,4 @@
-## Installation
+## How to install
 
 ```
     composer install
@@ -8,10 +8,15 @@
     php artisan migrate --seed
 ```
 
-## Running
+## How to run
 
 ```
     php artisan serve
+```
+
+## How to test
+```
+    php artisan test
 ```
 
 ## Dummy users to test

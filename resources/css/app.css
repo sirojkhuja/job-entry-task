@@ -34,3 +34,7 @@ main .content {
     grid-column: 2/3;
     padding: 2rem;
 }
+
+.action-button {
+    cursor: pointer;
+}
